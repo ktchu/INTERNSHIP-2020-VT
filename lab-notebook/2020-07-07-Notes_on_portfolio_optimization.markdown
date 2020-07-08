@@ -3,7 +3,7 @@
 
 *Author*: Kevin Chu `<kevin@velexi.com>`
 
-*Last Updated*: 2020-07-07
+*Last Updated*: 2020-07-08
 
 -------------------------------------------------------------------------------
 
@@ -269,13 +269,9 @@ _Lagrangian function_.
 
     \[
       \tau \sum_{i = 1}^n \sigma_{1i} w_i - \lambda = r_1 \\
-
       \tau \sum_{i = 1}^n \sigma_{2i} w_i - \lambda = r_2 \\
-
       \vdots \\
-
       \tau \sum_{i = 1}^n \sigma_{ni} w_i - \lambda = r_n \\
-
       \sum_{i = 1}^n w_i = 1
     \]
 
@@ -354,10 +350,10 @@ Since there are two constraints, we add to Lagrange multiplier terms to form
 the Lagrangian function:
 
 \[
-  \hat{V} (w_1, w_2, \ldots, w_n, \alpha, \beta)
-  =   \sum_{i=1}^n \sum_{j=1}^n \sigma_{ij} w_i w_j
-    + \alpha \left( 1 - \sum_{i = 1}^n w_i \right)
-    + \beta \left( \mu - \sum_{i = 1}^n r_i w_i \right)
+\hat{V} (w_1, w_2, \ldots, w_n, \alpha, \beta)
+=   \sum_{i=1}^n \sum_{j=1}^n \sigma_{ij} w_i w_j
+  + \alpha \left( 1 - \sum_{i = 1}^n w_i \right)
+  + \beta \left( \mu - \sum_{i = 1}^n r_i w_i \right)
 \]
 
 Setting the gradient of $\hat{V}$ to zero, we obtain the following linear
@@ -365,15 +361,10 @@ system of equations:
 
 \[
   \sum_{j = 1}^n \sigma_{1j} w_j - \alpha - \beta r_1 = 0 \\
-
   \sum_{j = 1}^n \sigma_{1j} w_j - \alpha - \beta r_2 = 0 \\
-
   \vdots \\
-
   \sum_{j = 1}^n \sigma_{1j} w_j - \alpha - \beta r_n = 0 \\
-
   \sum_{j = 1}^n w_j = 1 \\
-
   \sum_{j = 1}^n r_j w_j = \mu
 \]
 
@@ -383,13 +374,13 @@ sum of the first $n$ equations multiplied by the asset weighting $w_i$, we
 find that
 
 \[
-  0
-  = \sum_{i = 1}^n w_i
-      \left( \sum_{j = 1}^n \sigma_{1j} w_j - \alpha - \beta r_i \right) \\
-  =   \sum_{i = 1}^n \sum_{j = 1}^n \sigma_{1j} w_i w_j
-    - \alpha \sum_{i = 1}^n w_i
-    - \beta \sum_{i = 1}^n w_i r_i \\
-  =   \sigma_p^2 - \alpha - \beta \mu.
+0
+= \sum_{i = 1}^n w_i
+    \left( \sum_{j = 1}^n \sigma_{1j} w_j - \alpha - \beta r_i \right) \\
+=   \sum_{i = 1}^n \sum_{j = 1}^n \sigma_{1j} w_i w_j
+  - \alpha \sum_{i = 1}^n w_i
+  - \beta \sum_{i = 1}^n w_i r_i \\
+=   \sigma_p^2 - \alpha - \beta \mu.
 \]
 
 Rearranging this equation, we find that the portfolio return $\mu$ is a
@@ -407,126 +398,128 @@ In other words, _the efficient frontier is a parabola in the risk-return plane_.
 In matrix form, the system of equations representing $\nabla \hat{V} = 0$ is
 
 \[
-  \left[\begin{array}{ccccc}
-    \sigma_{11} & \sigma_{12} & \ldots & \sigma_{1n} & -1 & -r_1 \\
-    \sigma_{21} & \sigma_{22} & \ldots & \sigma_{2n} & -1 & -r_2 \\
-    \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
-    \sigma_{n1} & \sigma_{n2} & \ldots & \sigma_{nn} & -1 & -r_n \\
-    1   & 1   & \ldots & 1   & 0 & 0 \\
-    r_1 & r_2 & \ldots & r_n & 0 & 0
-  \end{array}\right]
-  \left[\begin{array}{c}
-    w_1 \\
-    w_2 \\
-    \vdots \\
-    w_n \\
-    \alpha \\
-    \beta
-  \end{array}\right]
-  =
-  \left[\begin{array}{c}
-    0 \\
-    0 \\
-    \vdots \\
-    0 \\
-    1 \\
-    \mu
-  \end{array}\right]
+\left[\begin{array}{ccccc}
+  \sigma_{11} & \sigma_{12} & \ldots & \sigma_{1n} & -1 & -r_1 \\
+  \sigma_{21} & \sigma_{22} & \ldots & \sigma_{2n} & -1 & -r_2 \\
+  \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
+  \sigma_{n1} & \sigma_{n2} & \ldots & \sigma_{nn} & -1 & -r_n \\
+  1   & 1   & \ldots & 1   & 0 & 0 \\
+  r_1 & r_2 & \ldots & r_n & 0 & 0
+\end{array}\right]
+\left[\begin{array}{c}
+  w_1 \\
+  w_2 \\
+  \vdots \\
+  w_n \\
+  \alpha \\
+  \beta
+\end{array}\right]
+=
+\left[\begin{array}{c}
+  0 \\
+  0 \\
+  \vdots \\
+  0 \\
+  1 \\
+  \mu
+\end{array}\right]
 \]
 
 Breaking this into three matrix-vector multiplications, we find that
 
 \[
-  \left[\begin{array}{ccc}
-    \sigma_{11} & \sigma_{12} & \ldots & \sigma_{1n} \\
-    \sigma_{21} & \sigma_{22} & \ldots & \sigma_{2n} \\
-    \vdots & \vdots & \ddots & \vdots \\
-    \sigma_{n1} & \sigma_{n2} & \ldots & \sigma_{nn}
-  \end{array}\right]
-  \left[\begin{array}{c}
-    w_1 \\
-    w_2 \\
-    \vdots \\
-    w_n
-  \end{array}\right]
-  =
-  \alpha \left[\begin{array}{c}
-    1 \\
-    1 \\
-    \vdots \\
-    1
-  \end{array}\right] +
-  \beta \left[\begin{array}{c}
-    r_1 \\
-    r_2 \\
-    \vdots \\
-    r_n
-  \end{array}\right] \\
-
-  [1 1 \ldots 1]
-  \left[\begin{array}{c}
-    w_1 \\
-    w_2 \\
-    \vdots \\
-    w_n
-  \end{array}\right]
-  = [w_1 w_2 \ldots w_n]
-  \left[\begin{array}{c}
-    1 \\
-    1 \\
-    \vdots \\
-    1
-  \end{array}\right]
-  = 1 \\
-
-  [r_1 r_2 \ldots r_n]
-  \left[\begin{array}{c}
-    w_1 \\
-    w_2 \\
-    \vdots \\
-    w_n
-  \end{array}\right]
-  = [w_1 w_2 \ldots w_n]
-  \left[\begin{array}{c}
-    r_1 \\
-    r_2 \\
-    \vdots \\
-    r_n
-  \end{array}\right]
-  = \mu
+\left[\begin{array}{ccc}
+  \sigma_{11} & \sigma_{12} & \ldots & \sigma_{1n} \\
+  \sigma_{21} & \sigma_{22} & \ldots & \sigma_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \sigma_{n1} & \sigma_{n2} & \ldots & \sigma_{nn}
+\end{array}\right]
+\left[\begin{array}{c}
+  w_1 \\
+  w_2 \\
+  \vdots \\
+  w_n
+\end{array}\right]
+=
+\alpha \left[\begin{array}{c}
+  1 \\
+  1 \\
+  \vdots \\
+  1
+\end{array}\right] +
+\beta \left[\begin{array}{c}
+  r_1 \\
+  r_2 \\
+  \vdots \\
+  r_n
+\end{array}\right]
+\]
+\[
+[1 1 \ldots 1]
+\left[\begin{array}{c}
+  w_1 \\
+  w_2 \\
+  \vdots \\
+  w_n
+\end{array}\right]
+= [w_1 w_2 \ldots w_n]
+\left[\begin{array}{c}
+  1 \\
+  1 \\
+  \vdots \\
+  1
+\end{array}\right]
+= 1
+\]
+\[
+[r_1 r_2 \ldots r_n]
+\left[\begin{array}{c}
+  w_1 \\
+  w_2 \\
+  \vdots \\
+  w_n
+\end{array}\right]
+= [w_1 w_2 \ldots w_n]
+\left[\begin{array}{c}
+  r_1 \\
+  r_2 \\
+  \vdots \\
+  r_n
+\end{array}\right]
+= \mu
 \]
 
 Multiplying the first matrix equation on the left by $[w_1 w_2 \ldots w_n]$,
 we obtain
 
 \[
-  [w_1 w_2 \ldots w_n]
-  \left[\begin{array}{ccc}
-    \sigma_{11} & \sigma_{12} & \ldots & \sigma_{1n} \\
-    \sigma_{21} & \sigma_{22} & \ldots & \sigma_{2n} \\
-    \vdots & \vdots & \ddots & \vdots \\
-    \sigma_{n1} & \sigma_{n2} & \ldots & \sigma_{nn}
-  \end{array}\right]
-  \left[\begin{array}{c}
-    w_1 \\
-    w_2 \\
-    \vdots \\
-    w_n
-  \end{array}\right]
-  =   \alpha [w_1 w_2 \ldots w_n]
-        \left[\begin{array}{c}
-          1 \\
-          1 \\
-          \vdots \\
-          1
-        \end{array}\right]
-    + \beta [w_1 w_2 \ldots w_n]
-        \left[\begin{array}{c}
-          r_1 \\
-          r_2 \\
-          \vdots \\
-          r_n
-        \end{array}\right]
+[w_1 w_2 \ldots w_n]
+\left[\begin{array}{ccc}
+  \sigma_{11} & \sigma_{12} & \ldots & \sigma_{1n} \\
+  \sigma_{21} & \sigma_{22} & \ldots & \sigma_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \sigma_{n1} & \sigma_{n2} & \ldots & \sigma_{nn}
+\end{array}\right]
+\left[\begin{array}{c}
+  w_1 \\
+  w_2 \\
+  \vdots \\
+  w_n
+\end{array}\right]
+=   \alpha [w_1 w_2 \ldots w_n]
+      \left[\begin{array}{c}
+        1 \\
+        1 \\
+        \vdots \\
+        1
+      \end{array}\right]
+  + \beta [w_1 w_2 \ldots w_n]
+      \left[\begin{array}{c}
+        r_1 \\
+        r_2 \\
+        \vdots \\
+        r_n
+      \end{array}\right]
 \]
 
 Recognizing that the left-hand side is $\sigma_p^2$ and that the right-hand
@@ -539,7 +532,21 @@ $\nabla \hat{V} = 0$, we arrive at
 
 -------------------------------------------------------------------------------
 
-## 2. References
+## 2. Exercises
+
+1. Explore the relationships between optimal portfolio formulations.
+
+   a. Derive the efficient frontier using the formulation of the optimal
+      portfolio problem that uses an objective function involving both risk
+      and return.
+
+   b. Find the relationship between the risk tolerance parameter $\tau$
+      and $\lambda$ and the Lagrange multipliers in the optimal portfolio
+      formulation problem that uses an objective function involving only risk.
+
+-------------------------------------------------------------------------------
+
+## 3. References
 
 * [Wikipedia: Modern portfolio theory](https://en.wikipedia.org/wiki/Modern_portfolio_theory)
 
